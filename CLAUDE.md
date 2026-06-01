@@ -47,8 +47,10 @@ check the browser console for errors before claiming a change works.
 
 ## Conventions & gotchas
 
-- **No external CDN deps and no frameworks** in shipped code — keep it portable static
+- **Minimal external deps, no frameworks** in shipped code — keep it portable static
   (hosting is undecided; must stay GitHub Pages-compatible). Fonts are system fonts.
+  The one approved exception is the free, key-less **OpenStreetMap `<iframe>`** in the
+  "Find us downtown" section (see `context.md`). Don't add other CDNs/trackers without asking.
 - **`reference/` is gitignored** — never commit it and never ship its Squarespace markup.
   It exists only to look up original copy and asset URLs.
 - The live site's images come from `images.squarespace-cdn.com`; the localized copies in
