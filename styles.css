@@ -303,7 +303,39 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
   .nav__menu.is-open { display: flex; }
 }
 
+/* Scroll polish — progressive enhancement. JS adds .has-scroll-effects on <html>
+   and .scroll-reveal on targets, so without JS everything stays fully visible. */
+.has-scroll-effects .scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.has-scroll-effects .scroll-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Card / gallery items: small pop */
+.has-scroll-effects .category.scroll-reveal,
+.has-scroll-effects .gallery__item.scroll-reveal { transform: translateY(18px) scale(.98); }
+.has-scroll-effects .category.scroll-reveal.is-visible,
+.has-scroll-effects .gallery__item.scroll-reveal.is-visible { transform: none; }
+/* Directional reveals (vibe section) */
+.has-scroll-effects .scroll-reveal--left { transform: translateX(-32px); }
+.has-scroll-effects .scroll-reveal--right { transform: translateX(32px); }
+.has-scroll-effects .scroll-reveal--left.is-visible,
+.has-scroll-effects .scroll-reveal--right.is-visible { transform: none; }
+/* Active-section emphasis — subtle, kept readable */
+.has-scroll-effects .section[data-scroll-section] { transition: opacity .5s ease; }
+.has-scroll-effects .section[data-scroll-section]:not(.is-active) { opacity: .85; }
+.has-scroll-effects .section[data-scroll-section].is-active { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+  /* Belt-and-suspenders: never leave reveal targets hidden */
+  .has-scroll-effects .scroll-reveal,
+  .has-scroll-effects .section[data-scroll-section] {
+    opacity: 1 !important; transform: none !important;
+  }
 }

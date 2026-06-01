@@ -4,6 +4,37 @@ Newest entries at the top. See `AGENTS.md` for the handoff format.
 
 ---
 
+## 2026-06-01 — Claude (scroll reveal / active-section polish)
+
+**Current goal:** Implement Codex's `SCROLL_EXPERIENCE_RESEARCH_FOR_CLAUDE.md` — subtle
+reveal-on-scroll + active-section emphasis, native (no GSAP/AOS), progressive-enhancement.
+
+**Files changed:**
+- `styles.css` — added `.has-scroll-effects` scroll-polish block: `.scroll-reveal`
+  (opacity/translateY), card/gallery pop (translateY+scale), directional `--left/--right`
+  for the vibe section, and subtle inactive-section dimming (`.85`, kept readable). All
+  hide-states are scoped under `.has-scroll-effects`; reduced-motion override added too.
+- `main.js` — appended an IntersectionObserver module. It **adds the classes itself**
+  (`.has-scroll-effects` on `<html>`, `.scroll-reveal` on selected targets, `data-scroll-section`
+  on `main .section[id]`) so the HTML stays clean and content is fully visible without JS.
+  Reveal observer (threshold .18) + active-section observer (.42); JS-assigned stagger delays
+  for category/gallery children and a copy→photo cascade for vibe/findus. Guarded by
+  `prefers-reduced-motion` and an `IntersectionObserver` feature check.
+
+**Design choices vs. brief:** did the class-adding in JS (not HTML) to avoid editing ~25
+elements and to keep no-JS fully visible; used `.85` inactive dimming (brief's readable option);
+animated the findus **map wrapper**, never the OSM iframe itself.
+
+**Verified:** `node --check main.js` OK; CSS markers present; confirmed every reveal-hide rule
+is scoped under `.has-scroll-effects` (no unguarded hiding → no FOUC/no-JS breakage); page +
+main.js serve 200. NOT verified: live scroll animation in a real browser (no WSL browser
+runtime) — worth an eyeball that text isn't too dim and reveals don't trigger late on mobile
+(drop active threshold to .28 if so).
+
+**Next step:** Commit + push. Owner items still open: Search Console token, hours, phone, reviews.
+
+---
+
 ## 2026-06-01 — Codex GPT-5.5 (scroll experience research)
 
 **Current goal:** Research a polished scroll experience where sections highlight,

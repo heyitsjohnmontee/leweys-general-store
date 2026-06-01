@@ -123,4 +123,62 @@
       btnNext.hidden = true;
     }
   }
+
+  // Scroll reveal + active-section highlighting (progressive enhancement).
+  // All hiding lives behind .has-scroll-effects, which is only added here — so if
+  // this code or IntersectionObserver is unavailable, the page stays fully visible.
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("has-scroll-effects");
+
+    // Major non-hero sections get the active-state dimming.
+    var sections = document.querySelectorAll("main .section[id]");
+    sections.forEach(function (s) { s.setAttribute("data-scroll-section", ""); });
+
+    // Elements that fade/pop in as they enter the viewport.
+    var revealEls = document.querySelectorAll(
+      "#find .section__heading, #find .section__lede, #find .category, " +
+      "#feed .section__heading, #feed .section__lede, #feed .gallery__item, " +
+      "#vibe .vibe__media, #vibe .vibe__text, " +
+      "#visit .findus__info, #visit .findus__media, " +
+      "#newsletter .newsletter__inner"
+    );
+    revealEls.forEach(function (el) { el.classList.add("scroll-reveal"); });
+
+    // Directional reveals for the vibe section (image from left, copy from right).
+    var setDelay = function (sel, ms) {
+      var el = document.querySelector(sel);
+      if (el) el.style.setProperty("--reveal-delay", ms + "ms");
+    };
+    var vibeMedia = document.querySelector("#vibe .vibe__media");
+    var vibeText = document.querySelector("#vibe .vibe__text");
+    if (vibeMedia) vibeMedia.classList.add("scroll-reveal--left");
+    if (vibeText) vibeText.classList.add("scroll-reveal--right");
+    // Copy-then-photo / image cascade.
+    setDelay("#vibe .vibe__text", 120);
+    setDelay("#visit .findus__media", 140);
+
+    // Stagger the category cards and gallery items.
+    [".categories", ".gallery"].forEach(function (sel) {
+      document.querySelectorAll(sel + " .scroll-reveal").forEach(function (item, i) {
+        item.style.setProperty("--reveal-delay", Math.min(i * 70, 420) + "ms");
+      });
+    });
+
+    var revealObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle("is-active", entry.isIntersecting);
+      });
+    }, { threshold: 0.42, rootMargin: "-12% 0px -28% 0px" });
+    sections.forEach(function (s) { sectionObserver.observe(s); });
+  }
 })();
