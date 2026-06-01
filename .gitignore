@@ -1,0 +1,23 @@
+# Raw mirror of the live Squarespace site — content/asset reference only, not shipped
+reference/
+
+# Dependencies / environments
+node_modules/
+.venv/
+venv/
+env/
+
+# Local secrets and machine-specific config
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# OS cruft
+.DS_Store
+Thumbs.db
