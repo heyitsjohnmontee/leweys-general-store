@@ -4,6 +4,29 @@ Newest entries at the top. See `AGENTS.md` for the handoff format.
 
 ---
 
+## 2026-06-01 — Claude (GitHub Pages readiness)
+
+**Current goal:** Prepare the repo for a customer preview via GitHub Pages (deploy from
+`main`, root folder).
+
+**Files changed / created:**
+- `index.html` — changed the brand "home" link from root-relative `href="/"` to `href="./"`
+  so it works under a project Pages subpath (`/leweys-general-store/`). All other asset paths
+  were already relative.
+- `.nojekyll` — new empty file; bypasses Jekyll processing for a plain static site.
+- `README.md` — new; project intro, local-run, and a **Customer Preview** section with the
+  Pages URL + one-time enable steps.
+
+**Verified:** No remaining root-relative `href`/`src` in `index.html`; no CSS `url(/…)`; no
+build tooling (already static, nothing to compile); `index.html` is at repo root; site serves
+200 locally. Production canonical/OG/JSON-LD/sitemap URLs intentionally left pointing at
+`leweysgeneralstore.com` (correct for SEO; the Pages URL is preview-only — noted in README).
+
+**Next step:** John enables Pages in repo Settings → Pages (Deploy from a branch → `main` /
+root). Pages URL: https://heyitsjohnmontee.github.io/leweys-general-store/
+
+---
+
 ## 2026-06-01 — Claude (wire in Codex's photos + script wordmark + webp)
 
 **Current goal:** Wire Codex's prepared assets into the site, point OG at the real image,
