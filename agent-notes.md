@@ -4,6 +4,36 @@ Newest entries at the top. See `AGENTS.md` for the handoff format.
 
 ---
 
+## 2026-06-01 — Codex GPT-5.5 (scroll experience research)
+
+**Current goal:** Research a polished scroll experience where sections highlight,
+fade, or pop in/out as the user scrolls, and write Claude-ready implementation
+notes for the current static site.
+
+**Files changed / created:**
+- `SCROLL_EXPERIENCE_RESEARCH_FOR_CLAUDE.md` — research and implementation brief
+  for section highlight/reveal behavior using native `IntersectionObserver`, CSS
+  transitions, reduced-motion fallbacks, and guidance on when not to use GSAP/AOS.
+
+**Commands run:** Web research on MDN IntersectionObserver, `prefers-reduced-motion`,
+CSS scroll-driven animations, Chrome scroll animation guidance, GSAP ScrollTrigger,
+Scrollama, and AOS; local reads of current `index.html`, `styles.css`, and
+`agent-notes.md`; `git status --short`; sanity reads of the new brief.
+
+**Verified:** Current site sections map cleanly to a lightweight native reveal
+pattern: category cards, gallery items, vibe block, find-us block, and newsletter.
+The brief avoids hiding content without JS and requires reduced-motion support.
+
+**Open questions:** Whether John wants subtle polish only or a stronger pinned
+scrollytelling sequence.
+
+**Next step:** Claude can implement the checklist in
+`SCROLL_EXPERIENCE_RESEARCH_FOR_CLAUDE.md`: add `data-scroll-section`,
+`.scroll-reveal`, CSS states, IntersectionObserver JS, stagger delays, and reduced
+motion verification.
+
+---
+
 ## 2026-06-01 — Claude (GitHub Pages readiness)
 
 **Current goal:** Prepare the repo for a customer preview via GitHub Pages (deploy from
