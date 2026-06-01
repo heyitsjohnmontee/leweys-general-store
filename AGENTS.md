@@ -5,7 +5,7 @@ This repo is worked on by **two AI agents as equal collaborators**:
 - **Claude** (Claude Code)
 - **Codex** (GPT-5.5)
 
-Plus the owner, **John** (`heyitsjohnmontee`).
+Plus the owner, **John** (`john-will-studio`).
 
 There is no fixed architect/implementer split — either agent may plan, implement,
 review, or test. Coordination happens through `agent-notes.md` and git, not through

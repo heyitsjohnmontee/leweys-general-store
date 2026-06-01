@@ -23,7 +23,7 @@ This site is published with **GitHub Pages** (deployed from the `main` branch, r
 Once Pages is enabled, the live preview is at:
 
 ```
-https://heyitsjohnmontee.github.io/leweys-general-store/
+https://john-will-studio.github.io/leweys-general-store/
 ```
 
 Notes:

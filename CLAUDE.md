@@ -19,8 +19,9 @@ rules (Claude and Codex GPT-5.5 work here as equal collaborators).
   only). Use **`python3 -m http.server`** to preview and plain **`git`** (not `gh`) for
   GitHub operations.
 - **GitHub:** remote `origin` =
-  `git@github.com:heyitsjohnmontee/leweys-general-store.git`. SSH auth already works as
-  `heyitsjohnmontee` via `~/.ssh/id_ed25519` (the key set up for `F:\John\Code\gnt`).
+  `git@github.com:john-will-studio/leweys-general-store.git`. SSH auth already works as
+  `john-will-studio` via `~/.ssh/id_ed25519` (the key set up for `F:\John\Code\gnt`;
+  the GitHub account was renamed from `heyitsjohnmontee`).
 - No package manifest, build step, or test suite — it's static files served as-is.
 
 ## Project layout
